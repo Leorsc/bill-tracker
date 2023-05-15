@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from 'js-cookie';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useForm } from "react-hook-form";
 
 export default function Register() {
