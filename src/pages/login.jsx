@@ -70,7 +70,7 @@ export default function Login() {
             <div className='absolute top-0 left-0 w-full h-full bg-login bg-[url(/images/bg-login.png)] bg-cover bg-no-repeat bg-center'></div>
           </div>
           <div className='flex flex-col items-center h-full w-[65.3%] pt-[235px] pr-[292px] pb-[324px] pl-[293px] relative'>
-            <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>
+            {/* <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col items-center gap-8 w-[343px]">
                 <SubTitleForm>Faça seu login!</SubTitleForm>
                 <div className="flex flex-col gap-4 w-full relative">
@@ -109,7 +109,7 @@ export default function Login() {
                   action={handleRegister}
                 />
               </div>
-            </form>
+            </form> */}
           </div>
         </main>
       }

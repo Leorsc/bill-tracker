@@ -99,7 +99,7 @@ export default function Register() {
           </div>
           {formStep !== 2 ?
             <div className="flex flex-col items-center h-full w-[65.3%] pt-[208px] pr-[267px] pb-0 pl-[293px] relative">
-              <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>
+              {/* <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>
                 <ContainerFormRegister
                   formStep={formStep}
                   register={register}
@@ -108,7 +108,7 @@ export default function Register() {
                   handleLogin={handleLogin}
                   handleNextButtonClick={handleNextButtonClick}
                 />
-              </form>
+              </form> */}
               <HorizontalStepper formStep={formStep} setFormStep={setFormStep} />
             </div>
             :
