@@ -9,8 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
+    "@hookform/resolvers": "^3.1.0",
+    "axios": "^1.4.0",
+    "js-cookie": "^3.0.5",
+    "lucide-react": "^0.211.0",
+    "moment": "^2.29.4",
     "next": "13.4.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-input-mask": "^2.0.4",
+    "react-number-format": "^5.1.4",
+    "react-table": "^7.8.0",
+    "regenerator-runtime": "^0.13.11",
+    "yup": "^1.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2"
   }
 }
