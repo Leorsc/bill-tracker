@@ -63,7 +63,7 @@ export default function Forgot() {
           <div className='flex items-center justify-center h-full w-[65.3%] relative'>
             {emailSend ?
               <>
-                {/* <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>
+                <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>
                   <div className="flex flex-col items-center gap-8 w-[343px]">
                     <SubTitleForm>Esqueceu sua senha?</SubTitleForm>
                     <p className='font-montserrat text-sm text-dark-slate-grey'>Enviaremos um e-mail com instruções de como redefinir sua senha.</p>
@@ -87,7 +87,7 @@ export default function Forgot() {
                       Cancelar
                     </ButtonForm>
                   </div>
-                </form> */}
+                </form>
 
               </>
               :
