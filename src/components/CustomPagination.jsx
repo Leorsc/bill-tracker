@@ -64,7 +64,7 @@ export default function CustomPagination({
   };
 
   return (
-    <div className='flex items-center justify-center gap-3 text-dark-slate-grey font-nunito font-bold mt-6 absolute left-1/2 translate-x-1/2'>
+    <div className='flex items-center justify-center gap-3 text-dark-slate-grey font-nunito font-bold mt-6 absolute left-1/2 -translate-x-1/2'>
       <div className='flex items-center gap-2.5'>
         <div className='flex justify-around w-32'>
           <button

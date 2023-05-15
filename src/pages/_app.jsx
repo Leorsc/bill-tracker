@@ -3,9 +3,11 @@ import '@/styles/globals.css'
 import Head from 'next/head'
 
 import Layout from './layout'
+import { useRouter } from 'next/router'
 
 export default function MyApp({ Component, pageProps }) {
-  const page = Component.name.toLowerCase();
+  const router = useRouter()
+  const page = router.pathname.replace(/^\/([^/]+).*$/, '$1')
 
   return (
     <>
@@ -16,7 +18,7 @@ export default function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <UserProvider>
-        <Layout page={page} >
+        <Layout page={page}>
           <Component {...pageProps} />
         </Layout>
       </UserProvider>

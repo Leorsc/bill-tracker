@@ -9,9 +9,11 @@ import { signInValidationSchema } from '@/utils/yupValidations/signInValidation'
 import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from 'js-cookie';
 import Head from 'next/head';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+
 
 export default function Login() {
   const router = useRouter()
@@ -66,7 +68,7 @@ export default function Login() {
         domLoaded &&
         <main className="h-screen flex items-center">
           <div className='w-[34.7%] h-full pt-[172px] pr-[61px] pb-[505px] pl-[49px] relative'>
-            <div className='absolute top-0 left-0 w-full h-full bg-login bg-[url(../../public/images/bg-login.png)] bg-cover bg-no-repeat bg-center'></div>
+            <div className='absolute top-0 left-0 w-full h-full bg-login bg-[url(/images/bg-login.png)] bg-cover bg-no-repeat bg-center'></div>
           </div>
           <div className='flex flex-col items-center h-full w-[65.3%] pt-[235px] pr-[292px] pb-[324px] pl-[293px] relative'>
             <form className="flex flex-col items-center justify-between gap-10" onSubmit={handleSubmit(onSubmit)}>

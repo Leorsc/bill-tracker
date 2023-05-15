@@ -4,14 +4,17 @@ import SubTitlePage from '@/components/subtitles/SubTitlePage';
 import TableClients from '@/components/tables/TableClients';
 import useUser from '@/hooks/useUser';
 import api from '@/services/api';
+import Cookies from 'js-cookie';
 import { SlidersHorizontal, Users } from 'lucide-react';
 import Head from 'next/head'
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 // import ModalRegisterCharge from '../../components/ModalRegisterCharge';
 // import ModalRegisterClient from '../../components/ModalRegisterClient';
 
 
 export default function Clients() {
+  const router = useRouter()
   const { clients,
     setClients,
     openModalRegisterClient,
@@ -22,6 +25,16 @@ export default function Clients() {
 
   const { search } = (window.location);
   const [domLoaded, setDomLoaded] = useState(false)
+
+  useEffect(() => {
+    const token = Cookies.get('auth-token')
+    if (!token) {
+      router.push('/login')
+    } else {
+      setDomLoaded(true);
+    }
+    getClients()
+  }, [])
 
   useEffect(() => {
     getClients()

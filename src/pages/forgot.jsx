@@ -58,7 +58,7 @@ export default function Forgot() {
         domLoaded &&
         <main className="h-screen flex items-center">
           <div className='w-[34.7%] h-full pt-[172px] pr-[61px] pb-[505px] pl-[49px] relative'>
-            <div className='absolute top-0 left-0 w-full h-full bg-login bg-[url(../../public/images/bg-login.png)] bg-cover bg-no-repeat bg-center'></div>
+            <div className='absolute top-0 left-0 w-full h-full bg-login bg-[url(/images/bg-login.png)] bg-cover bg-no-repeat bg-center'></div>
           </div>
           <div className='flex items-center justify-center h-full w-[65.3%] relative'>
             {emailSend ?

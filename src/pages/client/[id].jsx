@@ -1,11 +1,11 @@
-import ButtonForm from '@/components/buttons/ButtonForm';
 import LoadingProgress from '@/components/LoadingProgress';
-import SubTitlePage from '@/components/subtitles/SubTitlePage';
+import ButtonForm from '@/components/buttons/ButtonForm';
 import ContainerInfoClientID from '@/components/containers/ContainerInfoClientID';
 import IconDeleteChange from '@/components/icons/IconDeleteCharge';
 import IconEditChange from '@/components/icons/IconEditCharge';
 import ModalDeleteCharge from '@/components/modals/ModalDeleteCharge';
 import ModalDetailsCharge from '@/components/modals/ModalDetailsCharge';
+import SubTitlePage from '@/components/subtitles/SubTitlePage';
 import useUser from '@/hooks/useUser';
 import api from '@/services/api';
 import { Users } from 'lucide-react';
@@ -15,7 +15,6 @@ import { useEffect, useState } from 'react';
 
 export default function Client_Details() {
   const router = useRouter()
-
 
   const {
     user,

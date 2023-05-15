@@ -36,16 +36,16 @@ export default function AsideBar({ page }) {
           </span>
         </div>
         <div
-          className={`flex flex-col items-center w-full justify-center cursor-pointer gap-[13.5px] h-[74px] ${(page === 'clients' || page === 'client_details') ? 'border-r-2 border-pink' : ''}`}
+          className={`flex flex-col items-center w-full justify-center cursor-pointer gap-[13.5px] h-[74px] ${(page === 'clients' || page === 'client') ? 'border-r-2 border-pink' : ''}`}
           onClick={handleRefreshClients}
         >
           <Users
             size={29}
-            stroke={`${page === 'clients' || page === 'client_details' ? '#DA0175' : '#343447'}`}
+            stroke={`${page === 'clients' || page === 'client' ? '#DA0175' : '#343447'}`}
             strokeWidth={1.5}
           />
           <span
-            className={`font-nunito font-semibold ${page === 'clients' || page === 'client_details' ? 'text-pink' : 'text-deep-night'}`}
+            className={`font-nunito font-semibold ${page === 'clients' || page === 'client' ? 'text-pink' : 'text-deep-night'}`}
           >
             Clientes
           </span>

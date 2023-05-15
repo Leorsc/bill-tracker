@@ -5,6 +5,7 @@ export default function SpanLoginForm({ action, title, button }) {
       <button
         className="text-pink cursor-pointer hover:underline"
         onClick={action}
+        type="button"
       >
         {button}
       </button>
