@@ -4,7 +4,7 @@ export default function ButtonsCancelApply({ ...props }) {
   return (
     <div className="flex items-center justify-between w-full gap-6">
       <button
-        className='w-1/2 h-[33px] border border-light-greyish text-center bg-light-greyish-white text-dark-green rounded-[10px] font-nunito text-lg cursor-pointer'
+        className='w-1/2 h-[33px] border border-light-greyish border-solid text-center bg-light-greyish-white text-dark-green rounded-ten font-nunito text-lg cursor-pointer'
         type='button'
         {...props}
       >

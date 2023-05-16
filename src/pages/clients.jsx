@@ -1,5 +1,6 @@
 import ButtonForm from '@/components/buttons/ButtonForm';
 import ModalRegisterCharge from '@/components/modals/ModalRegisterCharge';
+import ModalRegisterClient from '@/components/modals/ModalRegisterClient';
 import SubTitlePage from '@/components/subtitles/SubTitlePage';
 import TableClients from '@/components/tables/TableClients';
 import useUser from '@/hooks/useUser';
@@ -73,7 +74,7 @@ export default function Clients() {
                 <ButtonForm onClick={handleRegisterClient} style={{ width: 267, height: 33 }} >
                   + Adicionar cliente
                 </ButtonForm>
-                <div className='flex items-center justify-center h-10 w-10 bg-white cursor-pointer rounded-[10px] active:scale-105'>
+                <div className='flex items-center justify-center h-10 w-10 bg-white cursor-pointer rounded-ten active:scale-105'>
                   <SlidersHorizontal size={28} stroke="#DA0175" />
                 </div>
               </div>

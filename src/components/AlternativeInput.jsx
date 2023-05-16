@@ -1,4 +1,4 @@
-import FormInputGroup from "./FormInputGroup";
+import FormInputGroup from "./inputs/FormInputGroup";
 import InputMask from 'react-input-mask';
 
 export default function AlternativeInput({
@@ -10,23 +10,32 @@ export default function AlternativeInput({
   name2,
   priority1,
   priority2,
-  value1,
-  value2,
-  placeholder1,
-  placeholder2,
-  mask1,
-  mask2,
-  type1,
-  type2,
   inputType_1,
   inputType_2,
   width_1,
   width_2,
-  register }) {
+  register,
+  ...props
+}) {
+
+  //inputMask
+  // input1={{
+  //   mask={mask1}
+  //   defaultValue={value1}
+  //   placeholder={placeholder1}
+  // }}
+
+  //inputpadrão
+  // input1={{
+  //   placeholder={placeholder1}
+  //   type={type1}
+  //   defaultValue={value1}
+  // }}
+
   return (
-    <div className={`flex w-full gap-6 ${errors1 || errors2 ? 'h-[88px]' : 'h-[70px]'}`}>
+    <div className={`flex w-full gap-x-6 ${errors1 || errors2 ? 'h-[88px]' : 'h-[70px]'}`}>
       <FormInputGroup
-        className={`${width_1} h-full`}
+        className={`flex flex-col ${width_1} h-full`}
         title={title1}
         name={name1}
         errors={errors1}
@@ -36,23 +45,19 @@ export default function AlternativeInput({
           inputType_1 === 'mask' ?
             <InputMask
               className="w-full font-inter text-base text-input-form"
-              mask={mask1}
-              defaultValue={value1}
-              placeholder={placeholder1}
               {...register(name1)}
+              {...props.input1}
             />
             :
             <input
               className="w-full font-inter text-base text-input-form"
               {...register(name1)}
-              defaultValue={value1 ? value1 : ''}
-              type={type1}
-              placeholder={placeholder1}
+              {...props.input1}
             />
         }
       </FormInputGroup>
       <FormInputGroup
-        className={`${width_2} h-full`}
+        className={`flex flex-col ${width_2} h-full`}
         title={title2}
         name={name2}
         errors={errors2}
@@ -62,18 +67,14 @@ export default function AlternativeInput({
           inputType_2 === 'mask' ?
             <InputMask
               className="w-full font-inter text-base text-input-form"
-              mask={mask2}
-              defaultValue={value2}
-              placeholder={placeholder2}
               {...register(name2)}
+              {...props.input2}
             />
             :
             <input
               className="w-full font-inter text-base text-input-form"
               {...register(name2)}
-              defaultValue={value2 ? value2 : ''}
-              type={type2}
-              placeholder={placeholder2}
+              {...props.input2}
             />
         }
       </FormInputGroup>

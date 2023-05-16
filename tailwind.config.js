@@ -54,7 +54,8 @@ module.exports = {
         xs: '2px',
       },
       borderRadius: {
-        '4xl': '1.875rem'
+        '4xl': '1.875rem',
+        'ten': '0.625rem'
       },
       dropShadow: {
         'modal': '0 4px 4px rgba(0, 0, 0, 0.2)',

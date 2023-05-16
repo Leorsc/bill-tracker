@@ -1,13 +1,16 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
-import { NumericFormat } from 'react-number-format';
-import SubTitleForm from '../subtitles/SubTitleForm';
-import { File, X } from 'lucide-react';
 import useUser from '@/hooks/useUser';
 import { registerChangeValidationSchema } from '@/utils/yupValidations/registerChangeValidation';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { File, X } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import CustomRadioButtons from '../CustomRadioButtons';
+import LabelForm from '../LabelForm';
 import ButtonsCancelApply from '../buttons/ButtonsCancelApply';
+import GenericInput from '../inputs/GenericInput';
+import InputDataValue from '../inputs/InputDataValue';
+import SpanErrorForm from '../spans/SpanErrorForm';
+import SubTitleForm from '../subtitles/SubTitleForm';
 
 export default function ModalRegisterCharge() {
   const { setOpenModalRegisterCharge, clientCreateChange, setTextNotification, setOpenNotificationWindow } = useUser()
@@ -84,13 +87,13 @@ export default function ModalRegisterCharge() {
   }
 
   return (
-    <div className='modal_register_change'>
+    <div className='relative bg-white w-[600px] h-auto rounded-4xl pt-[51px] px-[57px] pb-[40px]'>
       <X
         className='absolute cursor-pointer top-6 right-6'
         onClick={handleCloseModal}
       />
-      <form className='form_register_change' onSubmit={handleSubmit(onSubmit)}>
-        <div className='container_register_change'>
+      <form className='flex flex-col items-center justify-between w-full gap-[136px]' onSubmit={handleSubmit(onSubmit)}>
+        <div className='flex flex-col gap-5 w-full'>
           <SubTitleForm style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             <File
               size={29}
@@ -99,78 +102,46 @@ export default function ModalRegisterCharge() {
             />
             Cadastro de Cobrança
           </SubTitleForm>
-          {/* <div className="form_register_change_container_inputs">
-            <InputForm
-              className={`${errors.name ? 'container_input_form_error' : 'container_input_form'}`}
+          <div className="flex flex-col w-full gap-4">
+            <GenericInput
               title={'Nome'}
               name={'name'}
               errors={errors.name}
               priority={true}
-            >
-              <input
-                type="text"
-                defaultValue={clientCreateChange.name}
-                className="form_input_input"
-                {...register('name')}
-                placeholder="Digite seu nome"
-                disabled
-              />
-            </InputForm>
-            <div className={`${errors.description ? '' : 'container_input_form_description'}`}>
-              <label
-                className="form_label"
-                htmlFor={'description'}>
-                {'Descrição*'}
-              </label>
-              <div className={`${errors.description ? 'form_description_error' : 'form_description'}`}>
-
+              type={'text'}
+              placeholder=""
+              register={register}
+              value={clientCreateChange.name}
+              disabled
+            />
+            <div className={`flex flex-col items-start justify-between w-full ${errors.description ? '' : 'h-28'}`}>
+              <LabelForm htmlFor={'description'} title={'Descrição'} priority={true} />
+              <div className={`relative w-full h-[88px] py-2.5 px-3.5 rounded-lg ${errors.description ? 'border border-error-message' : 'border border-border-input'}`}>
                 <textarea
-                  className="form_textarea_description"
+                  className="w-full h-auto max-h-[68px] font-inter text-base text-input-form whitespace-pre-wrap break-words overflow-hidden"
                   {...register('description')}
                   placeholder="Digite a descrição"
-                  rows="4"
-                  maxLength='150'
+                  rows="3"
+                  maxLength='141'
                 />
-
               </div>
               {errors.description && (
-                <span className="error_message">{errors.description.message}</span>
+                <SpanErrorForm>{errors.description.message}</SpanErrorForm>
               )}
             </div>
-            <InputFormAlternative
-              title1={'Vencimento'}
-              name1={'due_date'}
-              errors1={errors.due_date}
-              priority1={true}
-              title2={'value'}
-              name2={'value'}
-              errors2={errors.value}
-              priority2={true}
-            >
-              <InputMask
-                className="form_input_input"
-                mask="99/99/9999"
-                {...register('due_date')}
-                placeholder="Data de Vencimento"
-              />
-              <NumericFormat
-                thousandSeparator="."
-                decimalSeparator=","
-                decimalScale={2}
-                prefix="R$ "
-                placeholder="Digite o value"
-                onChange={handleSetValue}
-              />
-            </InputFormAlternative>
-            <CustomRadioButton
+            <InputDataValue
+              handleSetValue={handleSetValue}
+              errors={errors}
+              register={register}
+            />
+            <CustomRadioButtons
               handleOptionClick={handleOptionClick}
               selectedOption={selectedOption}
               register={register}
             />
-          </div> */}
+          </div>
         </div>
-
-        {apiError && <span className="error_message">{apiError}</span>}
+        {apiError && <SpanErrorForm>{apiError}</SpanErrorForm>}
         <ButtonsCancelApply onClick={handleCloseModal} />
       </form>
     </div>

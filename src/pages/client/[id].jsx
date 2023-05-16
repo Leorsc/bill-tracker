@@ -5,6 +5,9 @@ import IconDeleteChange from '@/components/icons/IconDeleteCharge';
 import IconEditChange from '@/components/icons/IconEditCharge';
 import ModalDeleteCharge from '@/components/modals/ModalDeleteCharge';
 import ModalDetailsCharge from '@/components/modals/ModalDetailsCharge';
+import ModalEditCharge from '@/components/modals/ModalEditCharge';
+import ModalEditClient from '@/components/modals/ModalEditClient';
+import ModalRegisterCharge from '@/components/modals/ModalRegisterCharge';
 import SubTitlePage from '@/components/subtitles/SubTitlePage';
 import useUser from '@/hooks/useUser';
 import api from '@/services/api';
@@ -15,7 +18,6 @@ import { useEffect, useState } from 'react';
 
 export default function Client_Details() {
   const router = useRouter()
-
   const {
     user,
     openModalEditClient,
@@ -51,7 +53,6 @@ export default function Client_Details() {
   useEffect(() => {
     getClients()
   }, [openNotificationWindow, openNotificationWindowError])
-
 
   function handleCreateChangeClient() {
     if (openNotificationWindow || openNotificationWindowError) {
@@ -206,14 +207,18 @@ export default function Client_Details() {
             </div>
           </div>
           {
-            openModalEditClient ?
+            openModalEditClient || openModalRegisterCharge || openModalEditCharge || openModalDetailsCharge || openModalDeleteCharge ?
               <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalEditClient client={clientDetailsPage} />
+                {openModalEditClient && <ModalEditClient client={clientDetailsPage} />}
+                {openModalRegisterCharge && <ModalRegisterCharge />}
+                {openModalEditCharge && <ModalEditCharge />}
+                {openModalDetailsCharge && <ModalDetailsCharge />}
+                {openModalDeleteCharge && <ModalDeleteCharge />}
               </div>
               :
               ''
           }
-          {
+          {/* {
             openModalRegisterCharge ?
               <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
                 <ModalRegisterCharge />
@@ -245,7 +250,7 @@ export default function Client_Details() {
               </div>
               :
               ''
-          }
+          } */}
         </>
       }
     </>

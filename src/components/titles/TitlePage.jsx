@@ -4,7 +4,7 @@ export default function TitlePage({ page }) {
 
   if (page === 'home') {
     return (
-      <h1 className='absolute left-[50px] top-[14px] font-montserrat font-semibold text-[26px] text-deep-night'>
+      <h1 className='absolute left-[50px] top-3.5 font-montserrat font-semibold text-[26px] text-deep-night'>
         Resumo das cobranças
       </h1>
     );

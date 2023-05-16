@@ -14,7 +14,7 @@ export default function ModalProfileUser() {
 
   return (
     <div className="flex items-center justify-between  absolute top-10 w-36 h-16 px-6 rounded-lg bg-white drop-shadow-modal">
-      <div className='inline-block absolute h-0 w-0 -top-[14px] left-[5px] border-l-[17px] border-r-[17px] border-b-[17px] border-l-transparent border-r-transparent border-b-white'></div>
+      <div className='inline-block absolute h-0 w-0 -top-3.5 left-[5px] border-l-[17px] border-r-[17px] border-b-[17px] border-l-transparent border-r-transparent border-b-white'></div>
       <div
         className='flex flex-col items-center gap-1 cursor-pointer'
         onClick={() => setOpenModalEditUser(true)}>

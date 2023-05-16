@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const api = axios.create({
-  baseURL: process.env.SERVICE_API_URL,
+  baseURL: 'https://king-prawn-app-5jxjz.ondigitalocean.app',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -17,7 +17,8 @@ api.interceptors.request.use((config) => {
   }
 
   return config;
-}
+},
+  (error) => Promise.reject(error),
 );
 
 export default api;

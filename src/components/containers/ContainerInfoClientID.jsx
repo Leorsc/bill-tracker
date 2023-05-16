@@ -27,7 +27,7 @@ export default function ContainerInfoClientID({ clientDetailsPage }) {
                     border-light-greyish 
                     border border-solid 
                     bg-light-greyish-white 
-                    rounded-[10px] 
+                    rounded-ten 
                     text-dark-green 
                     font-nunito 
                     text-lg 

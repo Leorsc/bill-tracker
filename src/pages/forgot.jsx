@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect, useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import GenericInput from '@/components/GenericInput';
+import GenericInput from '@/components/inputs/GenericInput';
 import { useRouter } from 'next/router';
 import ButtonForm from '@/components/buttons/ButtonForm';
 import CongratsTemplate from '@/components/CongratsTemplate';
@@ -38,7 +38,6 @@ export default function Forgot() {
 
   async function onSubmit(data) {
     try {
-      console.log(data)
       await api.post('/user/forgot', {
         email: data.email,
       })

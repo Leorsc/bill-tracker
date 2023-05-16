@@ -8,7 +8,8 @@ export default function GenericInput({
   name,
   type,
   placeholder,
-  value }) {
+  value,
+  ...props }) {
   return (
     <FormInputGroup
       className={`flex flex-col items-start w-full ${errors ? 'h-[88px]' : 'h-[70px]'}`}
@@ -23,6 +24,7 @@ export default function GenericInput({
         defaultValue={value ? value : ''}
         type={type}
         placeholder={placeholder}
+        {...props}
       />
     </FormInputGroup>
   );

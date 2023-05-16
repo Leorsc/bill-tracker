@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter()
-  console.log(router.pathname)
   const page = router.pathname === '/' ? 'home' : router.pathname.replace(/^\/([^/]+).*$/, '$1')
 
   return (

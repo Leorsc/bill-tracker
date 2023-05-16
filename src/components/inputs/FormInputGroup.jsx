@@ -1,6 +1,6 @@
 import InputField from "./InputField";
-import LabelForm from "./LabelForm";
-import SpanErrorForm from "./spans/SpanErrorForm";
+import LabelForm from "../LabelForm";
+import SpanErrorForm from "../spans/SpanErrorForm";
 
 export default function FormInputGroup({ children, title, name, errors, priority, ...props }) {
 

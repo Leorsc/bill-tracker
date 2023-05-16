@@ -8,8 +8,8 @@ import { useForm } from 'react-hook-form';
 import AlternativeInput from "../AlternativeInput";
 import ButtonForm from "../buttons/ButtonForm";
 import CongratsTemplate from "../CongratsTemplate";
-import GenericInput from "../GenericInput";
-import InputPassword from "../InputPassword";
+import GenericInput from "../inputs/GenericInput";
+import InputPassword from "../inputs/InputPassword";
 import SubTitleForm from "../subtitles/SubTitleForm";
 
 export default function ModalEditProfileUser() {
@@ -109,20 +109,24 @@ export default function ModalEditProfileUser() {
                   name1={'cpf'}
                   errors1={null}
                   priority1={false}
-                  mask1="999.999.999-99"
-                  value1={user.cpf}
-                  placeholder1="Digite seu CPF"
                   inputType_1={'mask'}
                   width_1='w-1/2'
+                  input1={{
+                    mask: "999.999.999-99",
+                    defaultValue: user.cpf,
+                    placeholder: "Digite seu CPF"
+                  }}
                   title2={'Telefone'}
                   name2={'phone'}
                   errors2={null}
                   priority2={false}
-                  mask2="(99) 99999-9999"
-                  value2={user.phone}
-                  placeholder2="Digite seu Telefone"
                   inputType_2={'mask'}
                   width_2='w-1/2'
+                  input2={{
+                    mask: "(99) 99999-9999",
+                    defaultValue: user.phone,
+                    placeholder: "Digite seu Telefone"
+                  }}
                   register={register}
                 />
                 <InputPassword

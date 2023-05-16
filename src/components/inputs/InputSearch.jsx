@@ -29,7 +29,7 @@ export default function InputSearch({ globalFilter, setGlobalFilter }) {
   }, [value]);
 
   return (
-    <div className='flex items-center justify-center w-[300px] rounded-[10px] bg-white drop-shadow-input-searc'>
+    <div className='flex items-center justify-center w-[300px] rounded-ten bg-white drop-shadow-input-searc'>
       <div className="flex items-center justify-between w-[320px] h-[39px] px-2 py-[7px]">
         <input
           className="w-full font-nunito text-lg text-dark-slate-grey"
