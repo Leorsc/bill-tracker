@@ -10,7 +10,7 @@ export default function TitlePaymentStatus({ type, total }) {
       <div className={`flex items-center w-full h-[111px] rounded-4xl mb-[24px] py-[23px] px-[35px] bg-overdue`}>
         <div className='flex items-center justify-center gap-10 w-full'>
           {handleSelectIconType(type)}
-          <div className='flex flex-col items-center w-full gap-[11px] h-[65px] font-montserrat font-bold text-lg text-dark-slate-grey'>
+          <div className='flex flex-col items-center gap-[11px] h-[65px] font-montserrat font-bold text-lg text-dark-slate-grey'>
             <h1>{`Cobranças ${handleSelectType(type)}`}</h1>
             <h1>
               {handleValueFormat(total)}
@@ -26,7 +26,7 @@ export default function TitlePaymentStatus({ type, total }) {
       <div className={`flex items-center w-full h-[111px] rounded-4xl mb-[24px] py-[23px] px-[35px] bg-pending`}>
         <div className='flex items-center justify-center gap-10 w-full'>
           {handleSelectIconType(type)}
-          <div className='flex flex-col items-center w-full gap-[11px] h-[65px] font-montserrat font-bold text-lg text-dark-slate-grey'>
+          <div className='flex flex-col items-center gap-[11px] h-[65px] font-montserrat font-bold text-lg text-dark-slate-grey'>
             <h1>{`Cobranças ${handleSelectType(type)}`}</h1>
             <h1>
               {handleValueFormat(total)}
@@ -42,7 +42,7 @@ export default function TitlePaymentStatus({ type, total }) {
       <div className={`flex items-center w-full h-[111px] rounded-4xl mb-[24px] py-[23px] px-[35px] bg-paid`}>
         <div className='flex items-center justify-center gap-10 w-full'>
           {handleSelectIconType(type)}
-          <div className='flex flex-col items-center w-full gap-[11px] h-[65px] font-montserrat font-bold text-lg text-dark-slate-grey'>
+          <div className='flex flex-col items-center gap-[11px] h-[65px] font-montserrat font-bold text-lg text-dark-slate-grey'>
             <h1>{`Cobranças ${handleSelectType(type)}`}</h1>
             <h1>
               {handleValueFormat(total)}

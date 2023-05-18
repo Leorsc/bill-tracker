@@ -1,19 +1,26 @@
 import useUser from '@/hooks/useUser';
+import api from '@/services/api';
 import { registerChangeValidationSchema } from '@/utils/yupValidations/registerChangeValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { File, X } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import CustomRadioButtons from '../CustomRadioButtons';
 import LabelForm from '../LabelForm';
 import ButtonsCancelApply from '../buttons/ButtonsCancelApply';
+import CustomRadioButtons from '../customs/CustomRadioButtons';
 import GenericInput from '../inputs/GenericInput';
 import InputDataValue from '../inputs/InputDataValue';
 import SpanErrorForm from '../spans/SpanErrorForm';
 import SubTitleForm from '../subtitles/SubTitleForm';
 
 export default function ModalRegisterCharge() {
-  const { setOpenModalRegisterCharge, clientCreateChange, setTextNotification, setOpenNotificationWindow } = useUser()
+  const {
+    setOpenModalRegisterCharge,
+    clientCreateChange,
+    setTextNotification,
+    setOpenNotificationWindow,
+    setTypeNotification } = useUser()
+
   const [selectedOption, setSelectedOption] = useState('pending');
   const [apiError, setApiError] = useState(null);
   const {
@@ -63,7 +70,9 @@ export default function ModalRegisterCharge() {
       setTimeout(() => {
         setTextNotification('Cobrança cadastrada com sucesso')
         setOpenNotificationWindow(true)
+        setTypeNotification('accept')
       }, 1000)
+
 
     } catch (error) {
       if (error.response?.data?.error === "Email already exists") {

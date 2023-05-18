@@ -1,8 +1,8 @@
 import handleValueFormat from '@/functions/formatValue';
+import saveClientIdToCookies from '@/functions/saveClientID';
 import handleSelectType from '@/functions/selectType';
 import useUser from '@/hooks/useUser';
 import { useEffect, useState } from 'react';
-
 import NumberCount from '../NumberCount';
 import SpanNameClient from '../spans/SpanNameClient';
 import SpanSeeAll from '../spans/SpanSeeAll';
@@ -43,7 +43,7 @@ export default function TablePaymentStatus({ type, values }) {
       <div className='flex flex-col justify-between w-full h-[216px] font-nunito text-sm text-span-table'>
         {tableData.map((item, index) => (
           <div className='flex justify-between w-full h-14 px-[25px] border-b border-morning-breeze' key={index}>
-            <SpanNameClient path={`/client/${item.client_id}`} name={item.client_name} width={'125px'} />
+            <SpanNameClient path={`/client/${item.client_id}`} name={item.client_name} onClick={() => saveClientIdToCookies(item.client_id)} width={'125px'} />
             <span
               className='flex items-center justify-start w-[100px] h-full cursor-pointer'
               onClick={() => handleOpenModalDetailsCharge(item)}

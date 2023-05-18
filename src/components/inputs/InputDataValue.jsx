@@ -1,6 +1,7 @@
 import InputMask from 'react-input-mask';
 import { NumericFormat } from 'react-number-format';
 import FormInputGroup from "./FormInputGroup";
+import handleDateFormat from '@/functions/formatDate';
 
 export default function InputDataValue({ errors, register, handleSetValue, initialValueDue_Date, initialValueValue }) {
   return (

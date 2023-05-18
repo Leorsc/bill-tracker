@@ -1,17 +1,22 @@
 import useUser from '@/hooks/useUser';
+import api from '@/services/api';
 import { registerClientValidationSchema } from '@/utils/yupValidations/registerClientValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
 import { Users, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import SubTitleForm from '../subtitles/SubTitleForm';
 import ButtonsCancelApply from '../buttons/ButtonsCancelApply';
-import SpanErrorForm from '../spans/SpanErrorForm';
 import ContainerModalEditClient from '../containers/ContainerModalEditClient';
+import SpanErrorForm from '../spans/SpanErrorForm';
+import SubTitleForm from '../subtitles/SubTitleForm';
 
 export default function ModalEditClient({ client }) {
-  const { setOpenModalEditClient, setTextNotification, setOpenNotificationWindow } = useUser()
+  const {
+    setOpenModalEditClient,
+    setTextNotification,
+    setOpenNotificationWindow,
+    setTypeNotification } = useUser()
 
   const [address, setAddress] = useState({
     zip_code: client.zip_code,
@@ -115,6 +120,7 @@ export default function ModalEditClient({ client }) {
       setTimeout(() => {
         setTextNotification('Edições do cadastro concluídas com sucesso')
         setOpenNotificationWindow(true)
+        setTypeNotification('accept')
       }, 1000)
 
     } catch (error) {

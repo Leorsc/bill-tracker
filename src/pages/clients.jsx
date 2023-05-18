@@ -10,9 +10,6 @@ import { SlidersHorizontal, Users } from 'lucide-react';
 import Head from 'next/head'
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-// import ModalRegisterCharge from '../../components/ModalRegisterCharge';
-// import ModalRegisterClient from '../../components/ModalRegisterClient';
-
 
 export default function Clients() {
   const router = useRouter()
@@ -21,8 +18,7 @@ export default function Clients() {
     openModalRegisterClient,
     setOpenModalRegisterClient,
     openModalRegisterCharge,
-    openNotificationWindow,
-    refreshClients } = useUser()
+    openNotificationWindow } = useUser()
 
   const { search } = (window.location);
   const [domLoaded, setDomLoaded] = useState(false)
@@ -33,15 +29,9 @@ export default function Clients() {
       router.push('/login')
     } else {
       setDomLoaded(true);
+      getClients()
     }
-    getClients()
   }, [])
-
-  useEffect(() => {
-    getClients()
-    setDomLoaded(true);
-  }, [refreshClients, openNotificationWindow])
-
 
   async function getClients() {
     try {
@@ -89,17 +79,10 @@ export default function Clients() {
             }
           </div>
           {
-            openModalRegisterClient ?
+            openModalRegisterClient || openModalRegisterCharge ?
               <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalRegisterClient />
-              </div>
-              :
-              ''
-          }
-          {
-            openModalRegisterCharge ?
-              <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalRegisterCharge />
+                {openModalRegisterClient && <ModalRegisterClient />}
+                {openModalRegisterCharge && <ModalRegisterCharge />}
               </div>
               :
               ''

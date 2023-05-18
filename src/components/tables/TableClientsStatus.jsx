@@ -1,12 +1,11 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import SpanSeeAll from '../spans/SpanSeeAll';
-import handleSelectType from '@/functions/selectType';
-import handleNameFormat from '@/functions/formatName';
-import handleTextLimiter from '@/functions/textLimiter';
+import saveClientIdToCookies from '@/functions/saveClientID';
 import handleSelectIconType from '@/functions/selectIconType';
+import handleSelectType from '@/functions/selectType';
+import handleTextLimiter from '@/functions/textLimiter';
+import { useEffect, useState } from 'react';
 import NumberCount from '../NumberCount';
 import SpanNameClient from '../spans/SpanNameClient';
+import SpanSeeAll from '../spans/SpanSeeAll';
 
 
 export default function TableClientsStatus({ type, icon, values }) {
@@ -44,7 +43,7 @@ export default function TableClientsStatus({ type, icon, values }) {
           tableData.map((item, index) => (
             <div className='flex  items-center justify-between w-full h-[56px] py-2 px-6 border-b border-morning-breeze' key={index}>
 
-              <SpanNameClient path={`/client/${item.id}`} name={item.name} width={'150px'} />
+              <SpanNameClient path={`/client/${item.id}`} name={item.name} width={'150px'} onClick={() => saveClientIdToCookies(item.id)} />
               <span className='flex items-center justify-start w-[200px] h-full'>{item.id ? handleTextLimiter(item.id, 20) : ""}</span>
               <span className='flex items-center justify-start w-[150px] h-full'>{item.cpf ? item.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1 $2 $3 $4") : ""}</span>
             </div>

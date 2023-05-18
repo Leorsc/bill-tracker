@@ -60,16 +60,29 @@ module.exports = {
       dropShadow: {
         'modal': '0 4px 4px rgba(0, 0, 0, 0.2)',
         'home-tables': '0px 4px 4px rgba(172, 217, 197, 0.25)',
-        'input-searc': '0px 5px 10px rgba(218, 1, 117, 0.1)'
+        'input-searc': '0px 5px 10px rgba(218, 1, 117, 0.1)',
+      },
+      boxShadow: {
+        'notify-window': '0px 4px 42px rgba(0, 0, 0, 0.2)'
       },
       keyframes: {
         'fade-in': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 }
+        },
+        'slide-in': {
+          'from': { transform: 'translateX(100%)', opacity: 0 },
+          'to': { transform: 'translateX(0)', opacity: 1 }
+        },
+        'slide-out': {
+          'from': { transform: 'translateX(0)', opacity: 1 },
+          'to': { transform: 'translateX(100%)', opacity: 0 }
         }
       },
       animation: {
-        'fade-in': 'fade-in 0.5s ease-in-out;'
+        'fade-in': 'fade-in 0.5s ease-in-out',
+        'slide-in': 'slide-in 0.9s ease-out forwards',
+        'slide-out': 'slide-out 0.9s ease-out forwards'
       }
     },
   },

@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import LabelForm from "./LabelForm";
+import LabelForm from "../LabelForm";
 
 export default function CustomRadioButtons({ handleOptionClick, selectedOption, register }) {
   return (
@@ -22,9 +22,9 @@ export default function CustomRadioButtons({ handleOptionClick, selectedOption, 
           className='flex items-center gap-2 w-full h-12 py-3 px-4 rounded-ten bg-lavander-grey cursor-pointer'
           onClick={() => handleOptionClick('pending')}
         >
-          <div className={`flex items-center justify-center w-6 h-6 rounded-full ${selectedOption === 'pending' ? 'bg-dark-green' : 'bg-[#C8C8D7]'}`}>
+          <div className={`flex items-center justify-center w-6 h-6 rounded-full ${selectedOption === 'pending' || selectedOption === 'overdue' ? 'bg-dark-green' : 'bg-[#C8C8D7]'}`}>
             {
-              selectedOption === 'pending' ?
+              selectedOption === 'pending' || selectedOption === 'overdue' ?
                 <Check size={16} stroke="white" /> : ''
             }
           </div>

@@ -1,25 +1,24 @@
 import LoadingProgress from '@/components/LoadingProgress';
+import NotificationWindow from '@/components/NotificationWindow';
 import ButtonForm from '@/components/buttons/ButtonForm';
 import ContainerInfoClientID from '@/components/containers/ContainerInfoClientID';
-import IconDeleteChange from '@/components/icons/IconDeleteCharge';
-import IconEditChange from '@/components/icons/IconEditCharge';
+import CustomHeaderTableCLientID from '@/components/customs/CustomHeaderTableClientID';
 import ModalDeleteCharge from '@/components/modals/ModalDeleteCharge';
 import ModalDetailsCharge from '@/components/modals/ModalDetailsCharge';
 import ModalEditCharge from '@/components/modals/ModalEditCharge';
 import ModalEditClient from '@/components/modals/ModalEditClient';
 import ModalRegisterCharge from '@/components/modals/ModalRegisterCharge';
 import SubTitlePage from '@/components/subtitles/SubTitlePage';
+import TableClientID from '@/components/tables/TableClientID';
 import useUser from '@/hooks/useUser';
 import api from '@/services/api';
+import Cookies from 'js-cookie';
 import { Users } from 'lucide-react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function Client_Details() {
-  const router = useRouter()
   const {
-    user,
     openModalEditClient,
     setClientCreateChange,
     openNotificationWindow,
@@ -30,7 +29,10 @@ export default function Client_Details() {
     openModalEditCharge,
     openModalDetailsCharge,
     openModalDeleteCharge,
-    textNotification
+    textNotification,
+    setTextNotification,
+    typeNotification,
+    setTypeNotification
   } = useUser()
 
   const [clientDetailsPage, setClientDetailsPage] = useState('')
@@ -40,15 +42,15 @@ export default function Client_Details() {
 
   useEffect(() => {
     getClients()
-    setDomLoaded(true);
   }, [])
 
   useEffect(() => {
     if (!isLoading && chargesClient?.length < 1) {
       setOpenNotificationWindowError(true)
+      setTypeNotification('not-delete')
+      setTextNotification('Não possui cobranças cadastradas!')
     }
   }, [isLoading])
-
 
   useEffect(() => {
     getClients()
@@ -63,7 +65,7 @@ export default function Client_Details() {
   }
 
   async function getClients() {
-    const { id } = router.query;
+    const id = Cookies.get('client-id')
     try {
       const response = await api.get(`/client/${id}`)
       setClientDetailsPage(response.data)
@@ -72,6 +74,8 @@ export default function Client_Details() {
       setTimeout(() => {
         setIsLoading(false);
       }, 2600)
+
+      setDomLoaded(true);
 
     } catch (error) {
       console.log(error)
@@ -87,7 +91,7 @@ export default function Client_Details() {
         domLoaded &&
         <>
           <div className='flex flex-col items-start gap-6 py-[28px] px-[108px] w-full h-full'>
-            {clientDetailsPage?.name && <SubTitlePage title={clientDetailsPage?.name} icon={<Users stroke='#3F3F55' />} />}
+            {clientDetailsPage?.name && <SubTitlePage title={clientDetailsPage?.name} icon={<Users size={32} strokeWidth={1.5} stroke='#3F3F55' />} />}
             <div className='h-[268.5px] py-[24px] px-[32px] w-full rounded-4xl bg-white '>
               {
                 clientDetailsPage ?
@@ -96,7 +100,7 @@ export default function Client_Details() {
                   ''
               }
             </div>
-            <div className=' w-full rounded-4xl bg-white h-auto'>
+            <div className='w-full rounded-4xl bg-white h-auto relative pt-6 px-1.5'>
               <div className='pr-[22px] pl-[24px] flex items-center justify-between w-full'>
                 <span className='font-montserrat font-bold text-lg text-dark-slate-grey'>Cobranças do Cliente</span>
                 <ButtonForm onClick={handleCreateChangeClient} style={{ width: 252, height: 33 }} >
@@ -105,103 +109,34 @@ export default function Client_Details() {
               </div>
               {
                 isLoading ?
-                  // <div className='table_clientID'>
-                  //   <div className='display_2
-                  //               width_100
-                  //               font_16
-                  //               font_bold
-                  //               font_nunito
-                  //               color_dark_slate_grey'
-                  //     style={{ height: 58, marginBottom: 8 }}
-                  //   >
-                  //     <div className='display_2 height_100 width_100'>
-                  //       <div className='table_clientID_header_id'>
-                  //         <img src={arrowDownUp} alt='seta para cima e para baixo' />
-                  //         ID Cob.
-                  //       </div>
-                  //       <div className='table_clientID_header_data_vencimento'>
-                  //         <img src={arrowDownUp} alt='seta para cima e para baixo' />
-                  //         Data de venc.
-                  //       </div>
-                  //       <div className='table_clientID_header_valor'>
-                  //         Valor
-                  //       </div>
-                  //       <div className='table_clientID_header_status'>
-                  //         Status
-                  //       </div>
-                  //       <div className='table_clientID_header_descricao'>
-                  //         Descrição
-                  //       </div>
-                  //       <div className='table_clientID_header_icons'>
-                  //       </div>
-                  //     </div>
-                  //   </div>
-                  <div className='no_charges_clientID display_1 width_100'>
+                  <CustomHeaderTableCLientID>
                     <LoadingProgress />
-                  </div>
-                  // </div>
+                  </CustomHeaderTableCLientID>
                   :
                   <>
-                    <div className='flex items-center justify-center gap-2 h-14'>
-                      <IconDeleteChange />
-                      <IconEditChange />
-                    </div>
-                    {/* {
+                    {
                       (chargesClient?.length || !chargesClient) ?
-                        <TableClientIDCharges chargesClient={chargesClient} clientName={clientDetailsPage.name} />
+                        <TableClientID chargesClient={chargesClient} clientName={clientDetailsPage.name} />
                         :
                         <>
-                          <div className='table_clientID'>
-                            <div className='display_2
-                                        width_100
-                                        font_16
-                                        font_bold
-                                        font_nunito
-                                        color_dark_slate_grey'
-                              style={{ height: 58, marginBottom: 8 }}
-                            >
-                              <div className='display_2 height_100 width_100'>
-                                <div className='table_clientID_header_id'>
-                                  <img src={arrowDownUp} alt='seta para cima e para baixo' />
-                                  ID Cob.
-                                </div>
-                                <div className='table_clientID_header_data_vencimento'>
-                                  <img src={arrowDownUp} alt='seta para cima e para baixo' />
-                                  Data de venc.
-                                </div>
-                                <div className='table_clientID_header_valor'>
-                                  Valor
-                                </div>
-                                <div className='table_clientID_header_status'>
-                                  Status
-                                </div>
-                                <div className='table_clientID_header_descricao'>
-                                  Descrição
-                                </div>
-                                <div className='table_clientID_header_icons'>
-                                </div>
-                              </div>
-                            </div>
-                            <div className='no_charges_clientID'>
-                            </div>
-                          </div>
+                          <CustomHeaderTableCLientID />
                           {openNotificationWindowError ?
-                            <NotificationWindowError type={false} style={{ gap: 11 }} >
-                              {'Não possui cobranças cadastradas!'}
-                            </NotificationWindowError>
+                            <NotificationWindow type={typeNotification} style={{ gap: 11 }} >
+                              {textNotification}
+                            </NotificationWindow>
                             :
                             ''
                           }
                           {
                             openNotificationWindow ?
-                              <NotificationWindow style={{ gap: 11 }} >
+                              <NotificationWindow type={typeNotification} style={{ gap: 11 }} >
                                 {textNotification}
                               </NotificationWindow>
                               :
                               ""
-                          } */}
-                    {/* </>
-                    } */}
+                          }
+                        </>
+                    }
                   </>
               }
             </div>
@@ -218,39 +153,6 @@ export default function Client_Details() {
               :
               ''
           }
-          {/* {
-            openModalRegisterCharge ?
-              <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalRegisterCharge />
-              </div>
-              :
-              ''
-          }
-
-          {
-            openModalEditCharge ?
-              <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalEditCharge />
-              </div>
-              :
-              ''
-          }
-          {
-            openModalDetailsCharge ?
-              <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalDetailsCharge />
-              </div>
-              :
-              ''
-          }
-          {
-            openModalDeleteCharge ?
-              <div className='fixed top-0 bottom-0 left-0 right-0 bg-modal backdrop-blur-xs flex items-center justify-center z-[3]'>
-                <ModalDeleteCharge />
-              </div>
-              :
-              ''
-          } */}
         </>
       }
     </>

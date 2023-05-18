@@ -1,20 +1,41 @@
 import useUser from '@/hooks/useUser';
-import { Home, Users, File } from 'lucide-react';
+import api from '@/services/api';
+import { File, Home, Users, ScrollText } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 export default function AsideBar({ page }) {
-  const { refreshClients, setRefreshClients, refreshCharges, setRefreshCharges } = useUser()
+  const { setClients, setCharges } = useUser()
   const router = useRouter();
 
   function handleRefreshClients() {
     router.push('/clients')
-    setRefreshClients(!refreshClients)
+    getClients()
   }
 
   function handleRefreshCharges() {
     router.push('/charges')
-    setRefreshCharges(!refreshCharges)
+    getCharges()
+  }
+
+  async function getClients() {
+    try {
+      const response = await api.get('/client')
+      setClients(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function getCharges() {
+    try {
+      const response = await api.get('/charges')
+
+      setCharges(response.data)
+
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -25,7 +46,7 @@ export default function AsideBar({ page }) {
           onClick={() => router.push('/')}
         >
           <Home
-            size={29}
+            size={36}
             stroke={`${page === 'home' ? '#DA0175' : '#343447'}`}
             strokeWidth={1.5}
           />
@@ -40,7 +61,7 @@ export default function AsideBar({ page }) {
           onClick={handleRefreshClients}
         >
           <Users
-            size={29}
+            size={36}
             stroke={`${page === 'clients' || page === 'client' ? '#DA0175' : '#343447'}`}
             strokeWidth={1.5}
           />
@@ -55,7 +76,7 @@ export default function AsideBar({ page }) {
           onClick={handleRefreshCharges}
         >
           <File
-            size={29}
+            size={36}
             stroke={`${page === 'charges' ? '#DA0175' : '#343447'}`}
             strokeWidth={1.5}
           />
@@ -65,8 +86,23 @@ export default function AsideBar({ page }) {
             Cobranças
           </span>
         </div>
+        <div
+          className={`flex flex-col items-center w-full justify-center cursor-pointer gap-[13.5px] h-[74px] ${page === 'report' ? 'border-r-2 border-pink' : ''}`}
+          onClick={() => router.push('/report')}
+        >
+          <ScrollText
+            size={36}
+            stroke={`${page === 'report' ? '#DA0175' : '#343447'}`}
+            strokeWidth={1.5}
+          />
+          <span
+            className={`font-nunito font-semibold ${page === 'report' ? 'text-pink' : 'text-deep-night'}`}
+          >
+            Relatório
+          </span>
+        </div>
       </div>
-      <Image className='absolute bottom-8' src='/images/bill-tracker-logo5.png' width={108} height={32} alt='logo' />
+      <Image className='absolute left-1/2 translate-x-[-50%] bottom-8' src='/images/bill-tracker-logo.png' width={80} height={32} alt='logo' />
     </aside>
   );
 }

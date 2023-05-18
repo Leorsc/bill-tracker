@@ -5,6 +5,7 @@ function useUserProvider() {
 
   const [clients, setClients] = useState()
   const [chargeDetails, setChargeDetails] = useState()
+  const [charges, setCharges] = useState()
   const [clientCreateChange, setClientCreateChange] = useState()
   const [editCharge, setEditCharge] = useState('')
   const [deleteCharge, setDeleteCharge] = useState('')
@@ -20,8 +21,7 @@ function useUserProvider() {
   const [openNotificationWindow, setOpenNotificationWindow] = useState(false)
   const [openNotificationWindowError, setOpenNotificationWindowError] = useState(false)
   const [textNotification, setTextNotification] = useState('')
-  const [refreshClients, setRefreshClients] = useState(false)
-  const [refreshCharges, setRefreshCharges] = useState(false)
+  const [typeNotification, setTypeNotification] = useState()
 
   return {
     user,
@@ -30,6 +30,8 @@ function useUserProvider() {
     setClients,
     chargeDetails,
     setChargeDetails,
+    charges,
+    setCharges,
     infosChargeEdit,
     setInfosChargeEdit,
     editCharge,
@@ -60,10 +62,8 @@ function useUserProvider() {
     setOpenNotificationWindow,
     openNotificationWindowError,
     setOpenNotificationWindowError,
-    refreshClients,
-    setRefreshClients,
-    refreshCharges,
-    setRefreshCharges,
+    typeNotification,
+    setTypeNotification,
     useState
   }
 }

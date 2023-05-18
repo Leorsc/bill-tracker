@@ -47,7 +47,7 @@ export default function ContainerModalRegisterClient({ register, errors, handleC
       />
       <AlternativeInput
         title1={'CEP'}
-        name1={'cep'}
+        name1={'zip_code'}
         errors1={null}
         priority1={false}
         inputType_1={'mask'}

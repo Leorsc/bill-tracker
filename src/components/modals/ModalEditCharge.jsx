@@ -1,20 +1,28 @@
 import useUser from '@/hooks/useUser';
+import api from '@/services/api';
 import { editChangeValidationSchema } from '@/utils/yupValidations/editChangeValidation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { File, X } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import CustomRadioButtons from '../CustomRadioButtons';
 import LabelForm from '../LabelForm';
 import ButtonsCancelApply from '../buttons/ButtonsCancelApply';
+import CustomRadioButtons from '../customs/CustomRadioButtons';
 import GenericInput from '../inputs/GenericInput';
 import InputDataValue from '../inputs/InputDataValue';
 import SpanErrorForm from '../spans/SpanErrorForm';
 import SubTitleForm from '../subtitles/SubTitleForm';
+import { useRouter } from 'next/router';
 
 export default function ModalEditCharge() {
-  const { setOpenModalEditCharge, setTextNotification, setOpenNotificationWindow, editCharge, setEditCharge } = useUser()
-  const [selectedOption, setSelectedOption] = useState('pending');
+  const {
+    setOpenModalEditCharge,
+    setTextNotification,
+    setOpenNotificationWindow,
+    editCharge,
+    setEditCharge,
+    setTypeNotification } = useUser()
+  const [selectedOption, setSelectedOption] = useState(editCharge.charge.status);
   const [apiError, setApiError] = useState(null);
   const {
     register,
@@ -63,7 +71,8 @@ export default function ModalEditCharge() {
 
       handleCloseModal()
       setTimeout(() => {
-        setTextNotification('Cobrança cadastrada com sucesso')
+        setTextNotification('Cobrança editada com sucesso!')
+        setTypeNotification('accept')
         setOpenNotificationWindow(true)
       }, 1000)
 
@@ -114,7 +123,7 @@ export default function ModalEditCharge() {
               type={'text'}
               placeholder=""
               register={register}
-              value={clientCreateChange.name}
+              value={editCharge.clientName}
               disabled
             />
             <div className={`flex flex-col items-start justify-between w-full ${errors.description ? '' : 'h-28'}`}>

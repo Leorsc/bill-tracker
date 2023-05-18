@@ -9,10 +9,18 @@ import ButtonsCancelApply from '../buttons/ButtonsCancelApply';
 import ContainerModalRegisterClient from '../containers/ContainerModalRegisterClient';
 import SpanErrorForm from '../spans/SpanErrorForm';
 import SubTitleForm from '../subtitles/SubTitleForm';
+import api from '@/services/api';
+import { useRouter } from 'next/router';
 
 
 export default function ModalRegisterClient() {
-  const { setOpenModalRegisterClient, setTextNotification, setOpenNotificationWindow } = useUser()
+  const router = useRouter()
+  const {
+    setOpenModalRegisterClient,
+    setTextNotification,
+    setOpenNotificationWindow,
+    setTypeNotification } = useUser()
+
   const [address, setAddress] = useState({});
   const {
     register,
@@ -90,7 +98,10 @@ export default function ModalRegisterClient() {
       setTimeout(() => {
         setTextNotification('Cadastro concluído com sucesso')
         setOpenNotificationWindow(true)
+        setTypeNotification('accept')
       }, 1000)
+
+      router.reload()
 
     } catch (error) {
       if (error.response?.data?.error === "Email already exists") {

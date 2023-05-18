@@ -1,6 +1,7 @@
 import useUser from '@/hooks/useUser';
 import api from '@/services/api';
 import { AlertTriangle, X } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 export default function ModalDeleteCharge() {
   const {
@@ -9,7 +10,8 @@ export default function ModalDeleteCharge() {
     setDeleteCharge,
     setOpenNotificationWindowError,
     setTextNotification,
-    setOpenNotificationWindow } = useUser()
+    setOpenNotificationWindow,
+    setTypeNotification } = useUser()
 
   function handleCloseModal() {
     setOpenModalDeleteCharge(false)
@@ -31,6 +33,7 @@ export default function ModalDeleteCharge() {
       setTimeout(() => {
         setTextNotification('Cobrança excluída com sucesso!')
         setOpenNotificationWindow(true)
+        setTypeNotification('accept')
       }, 1000)
 
     } else {
@@ -38,6 +41,7 @@ export default function ModalDeleteCharge() {
       setTimeout(() => {
         setOpenNotificationWindowError(true)
         setTextNotification('Esta cobrança não pode ser excluída!')
+        setTypeNotification('not-delete')
       }, 1000)
 
     }

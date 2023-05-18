@@ -6,14 +6,19 @@ import { X } from "lucide-react";
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AlternativeInput from "../AlternativeInput";
-import ButtonForm from "../buttons/ButtonForm";
 import CongratsTemplate from "../CongratsTemplate";
+import ButtonForm from "../buttons/ButtonForm";
 import GenericInput from "../inputs/GenericInput";
 import InputPassword from "../inputs/InputPassword";
 import SubTitleForm from "../subtitles/SubTitleForm";
 
 export default function ModalEditProfileUser() {
-  const { user, setUser, setOpenModalProfileUser, setOpenModalEditUser } = useUser()
+  const {
+    user,
+    setUser,
+    setOpenModalProfileUser,
+    setOpenModalEditUser,
+  } = useUser()
   const {
     register,
     handleSubmit,

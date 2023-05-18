@@ -25,7 +25,7 @@ export default function TitlePage({ page }) {
     );
   }
 
-  if (page === 'client_details') {
+  if (page === 'client') {
     return (
       <div className='absolute left-[71px] bottom-0 font-inter  text-base text-dark-green'>
         <Link href='/clients' >

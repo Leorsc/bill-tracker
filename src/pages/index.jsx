@@ -27,8 +27,8 @@ export default function Home() {
       router.push('/login')
     } else {
       setDomLoaded(true);
+      getInfos()
     }
-    getInfos()
   }, [])
 
   async function getInfos() {
@@ -62,12 +62,12 @@ export default function Home() {
         <>
           <div className='flex gap-[2.8%] pt-[19px] pr-[108px] pb-[0px] pl-[80px] w-full'>
             {chargesPaid && <PaymentStatus type={'paid'} values={chargesPaid} total={chargesPaidValueTotal} />}
-            {chargesOverdue && <PaymentStatus type={'overdue'} values={chargesOverdue} total={chargesOverdueValueTotal} />}
             {chargesPending && <PaymentStatus type={'pending'} values={chargesPending} total={chargesPendingValueTotal} />}
+            {chargesOverdue && <PaymentStatus type={'overdue'} values={chargesOverdue} total={chargesOverdueValueTotal} />}
           </div>
           <div className='flex gap-[2.8%] pt-[19px] pr-[108px] pb-[0px] pl-[80px] w-full mt-8'>
-            {defaulterTrue && <TableClientsStatus type={'defaulter'} values={defaulterTrue} />}
             {defaulterFalse && <TableClientsStatus type={'in-day'} values={defaulterFalse} />}
+            {defaulterTrue && <TableClientsStatus type={'defaulter'} values={defaulterTrue} />}
           </div>
           {
             openModalDetailsCharge ?

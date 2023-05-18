@@ -3,15 +3,18 @@ import useUser from '@/hooks/useUser';
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { useGlobalFilter, usePagination, useSortBy, useTable } from "react-table";
-import CustomPagination from '../CustomPagination';
+import CustomPagination from '../customs/CustomPagination';
 import HeaderTable from '../HeaderTable';
 import NotFoundSearch from '../NotFoundSearch';
 import RowsTable from '../RowsTable';
 import IconCreateCharge from '../icons/IconCreateCharge';
 import InputSearch from '../inputs/InputSearch';
+import Cookies from 'js-cookie';
+import saveClientIdToCookies from '@/functions/saveClientID';
+import NotificationWindow from '../NotificationWindow';
 
 export default function TableClients({ clients }) {
-  const { textNotification, openNotificationWindow, setOpenModalRegisterCharge, setClientCreateChange } = useUser()
+  const { textNotification, openNotificationWindow, setOpenModalRegisterCharge, setClientCreateChange, typeNotification } = useUser()
 
   function handleCreateChangeClick(client) {
     if (openNotificationWindow) {
@@ -49,7 +52,7 @@ export default function TableClients({ clients }) {
         Header: 'Cliente',
         accessor: "name",
         Cell: ({ value, row }) => (
-          <Link href={`/client/${row.original.id}`}>{handleNameFormat(value)}</Link>
+          <Link href={`/client/${row.original.id}`} onClick={() => saveClientIdToCookies(row.original.id)} >{handleNameFormat(value)}</Link>
         )
       },
       {
@@ -126,6 +129,7 @@ export default function TableClients({ clients }) {
             <HeaderTable
               headerGroups={headerGroups}
               getColumnClassName={getColumnClassName}
+              table={'Clients'}
             />
             {rows.length > 0 ? (
               <>
@@ -156,15 +160,14 @@ export default function TableClients({ clients }) {
                 setGlobalFilter={setGlobalFilter}
               />
             </div>
-
-            {/* {
+            {
               openNotificationWindow ?
-                <NotificationWindow style={{ gap: 11 }} >
+                <NotificationWindow type={typeNotification} style={{ gap: 11 }} >
                   {textNotification}
                 </NotificationWindow>
                 :
                 ""
-            } */}
+            }
           </div>
 
         </>
