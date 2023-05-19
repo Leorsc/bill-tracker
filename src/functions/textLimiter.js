@@ -3,9 +3,8 @@ export default function handleTextLimiter(text, numberLimit) {
   const textoExcedeuLimite = text.length > limit;
   const textoTruncado = text.substring(0, limit) + '...';
 
-  return (
-    <>
-      {textoExcedeuLimite ? textoTruncado : text}
-    </>
-  );
+  if (textoExcedeuLimite) {
+    return textoTruncado
+  }
+  return text
 }

@@ -1,11 +1,11 @@
 import { format } from 'date-fns';
 import jsPDF from 'jspdf';
-import handleValueFormat from './formatValue';
-import generatorDateAndTime from './generatorDateAndTime';
-import generatorTitle from './generatorTitle';
-import printFormattedField from './printFormattedField';
+import handleValueFormat from '../../formatValue';
+import generatorDateAndTime from '../generatorDateAndTime';
+import generatorTitle from '../generatorTitle';
+import printFormattedField from '../printFormattedField';
 
-export default function gerarPDF(clientsWithCharges, dates, total) {
+export default function generatorPDF(clientsWithCharges, dates, total) {
   const doc = new jsPDF();
   const startY = 20;
   let currentY = startY;
@@ -111,5 +111,5 @@ export default function gerarPDF(clientsWithCharges, dates, total) {
     currentY += 50;
     doc.line(15, currentY, 200, currentY);
   });
-  doc.save('relatorio-inadimplentes.pdf');
+  doc.save(`BILLTRACKER_relatorio_inadimplentes_${generetorDateNameFile()}.pdf`);
 }

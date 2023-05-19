@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import useUser from '../hooks/useUser';
 import AsideBar from '@/components/AsideBar';
 import Header from '@/components/Header';
+import Image from 'next/image';
 
 export default function Layout({ children, page }) {
   const {
@@ -22,10 +23,11 @@ export default function Layout({ children, page }) {
   return (
     <>
       {
-        page === 'register' || page === 'login' || page === 'forgot' ?
-          <>
+        page === 'register' || page === 'login' || page === 'forgot' || page === 'reset-password' ?
+          <main className='h-screen flex items-center relative'>
+            <Image className='absolute top-4 right-4' src='/images/bill-tracker-logo-white-removebg.png' width={100} height={100} alt='logo' />
             {children}
-          </>
+          </main>
           :
           <>
             {

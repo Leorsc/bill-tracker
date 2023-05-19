@@ -134,7 +134,7 @@ export default function ModalEditCharge() {
                   {...register('description')}
                   placeholder="Digite a descrição"
                   rows="3"
-                  maxLength='141'
+                  maxLength='100'
                   defaultValue={editCharge.charge.description}
                 />
               </div>

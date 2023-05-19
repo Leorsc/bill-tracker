@@ -1,6 +1,8 @@
 import useUser from "@/hooks/useUser";
 import SpanData from "../spans/SpanData";
-import { Edit3 } from "lucide-react";
+import { Download, Edit3 } from "lucide-react";
+import ButtonDownload from "../buttons/ButtonDownload";
+import generatorPDF from "@/functions/PDF/page_clientID/generatorPDFR";
 
 export default function ContainerInfoClientID({ clientDetailsPage }) {
   const { setOpenModalEditClient, openNotificationWindow, openNotificationWindowError } = useUser()
@@ -18,25 +20,20 @@ export default function ContainerInfoClientID({ clientDetailsPage }) {
         className='flex items-center justify-between h-[15.87%]'
       >
         <span className='font-montserrat text-lg font-bold text-dark-slate-grey'>Dados do cliente</span>
-        <button
-          className='flex 
-                    items-center 
-                    justify-center 
-                    gap-1
-                    w-[248px] h-[35px] 
-                    border-light-greyish 
-                    border border-solid 
-                    bg-light-greyish-white 
-                    rounded-ten 
-                    text-dark-green 
-                    font-nunito 
-                    text-lg 
-                    cursor-pointer'
-          onClick={handleEditClient}
-        >
-          <Edit3 size={18} />
-          Editar Cliente
-        </button>
+        <div className="flex gap-4">
+          <ButtonDownload
+            icon={<Download size={18} />}
+            onClick={() => generatorPDF(clientDetailsPage)}
+          >
+            Exportar
+          </ButtonDownload>
+          <ButtonDownload
+            icon={<Edit3 size={18} />}
+            onClick={handleEditClient}
+          >
+            Editar Cliente
+          </ButtonDownload>
+        </div>
       </section>
       <section
         className='flex align-start justify-between flex-col w-full h-[84.13%]'

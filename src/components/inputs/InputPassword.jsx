@@ -2,7 +2,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import FormInputGroup from './FormInputGroup';
 
-export default function InputPassword({ errors, priority, title, register, name, placeholder }) {
+export default function InputPassword({ errors, priority, title, register, name, placeholder, ...props }) {
   const [showPassword, setShowPassword] = useState(false);
   const [eyeView, setEyeView] = useState(false)
 
@@ -29,6 +29,7 @@ export default function InputPassword({ errors, priority, title, register, name,
           type={showPassword ? 'text' : 'password'}
           className="w-11/12 font-inter text-base text-input-form"
           {...register(name)}
+          {...props}
           placeholder={placeholder}
         />
         {eyeView ?

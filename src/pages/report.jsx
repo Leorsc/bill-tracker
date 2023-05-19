@@ -3,16 +3,17 @@ import ButtonForm from '@/components/buttons/ButtonForm';
 import SubTitlePage from '@/components/subtitles/SubTitlePage';
 import handleDateFormatSimple from '@/functions/formatDateSimple';
 import handleValueFormat from '@/functions/formatValue';
-import gerarPDF from '@/functions/gerarPDF';
+import generatorPDF from '@/functions/PDF/page_repor/generatorPDFR';
 import api from '@/services/api';
 import { reportValidationSchema } from '@/utils/yupValidations/reportValidation';
 import { yupResolver } from "@hookform/resolvers/yup";
 import Cookies from 'js-cookie';
-import { ScrollText } from 'lucide-react';
+import { Download, ScrollText } from 'lucide-react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import ButtonDownload from '@/components/buttons/ButtonDownload';
 
 export default function Clients() {
   const router = useRouter()
@@ -120,7 +121,17 @@ export default function Clients() {
           <div className='flex h-12 pl-[108px] pr-[114px] mt-6 w-full'>
             <div className='flex items-center justify-between w-full h-full'>
               <SubTitlePage title={'Relatório de Inadimplência'} icon={<ScrollText size={28} stroke="#3F3F55" />} />
-              {clientsWithCharges.length ? <button onClick={() => gerarPDF(clientsWithCharges, dates, geralTotalOverdue)}>Gerar PDF</button> : ''}
+              {clientsWithCharges.length ?
+                <ButtonDownload
+                  icon={<Download size={18} />}
+                  onClick={() => generatorPDF(clientsWithCharges, dates, geralTotalOverdue)}
+                >
+                  Exportar
+                </ButtonDownload>
+                :
+                ''
+              }
+
               <form className='flex items-center gap-4 w-auto' onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex items-center justify-between gap-2 w-auto'>
                   <LabelForm priority={false} title={'Data Inicial:'} />
@@ -148,7 +159,7 @@ export default function Clients() {
             <div className='w-auto'>
               <h2>Cobranças dos clients</h2>
               <h1>Geral devedor :{handleValueFormat(geralTotalOverdue)}</h1>
-              <div className='flex flex-col gap-2 w-auto'>
+              <div className='flex flex-wrap gap-2 w-auto'>
                 {clientsWithCharges.map(client => (
                   <div className='flex flex-col border border-red-500 w-auto' key={client.id}>
                     <strong>{client.name}</strong>

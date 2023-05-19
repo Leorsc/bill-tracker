@@ -55,7 +55,7 @@ export default function Forgot() {
       </Head>
       {
         domLoaded &&
-        <main className="h-screen flex items-center">
+        <>
           <div className='w-[34.7%] h-full pt-[172px] pr-[61px] pb-[505px] pl-[49px] relative'>
             <div className='absolute top-0 left-0 w-full h-full bg-login bg-[url(/images/bg-login.png)] bg-cover bg-no-repeat bg-center'></div>
           </div>
@@ -102,7 +102,7 @@ export default function Forgot() {
               </>
             }
           </div>
-        </main>
+        </>
       }
     </>
   )

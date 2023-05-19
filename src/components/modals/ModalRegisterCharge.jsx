@@ -131,7 +131,7 @@ export default function ModalRegisterCharge() {
                   {...register('description')}
                   placeholder="Digite a descrição"
                   rows="3"
-                  maxLength='141'
+                  maxLength='100'
                 />
               </div>
               {errors.description && (

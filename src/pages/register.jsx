@@ -91,7 +91,7 @@ export default function Register() {
       </Head>
       {
         domLoaded &&
-        <main className='h-screen flex items-center'>
+        <>
           <div className="w-[34.7%] pt-[172px] pr-[61px] pb-[505px] pl-[49px] bg-lavander-grey h-full">
             <div>
               <VerticalStepper formStep={formStep} />
@@ -124,7 +124,7 @@ export default function Register() {
               <HorizontalStepper formStep={formStep} setFormStep={setFormStep} />
             </div>
           }
-        </main>
+        </>
       }
     </>
   )
